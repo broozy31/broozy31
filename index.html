@@ -3,36 +3,196 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Driver Check-in</title>
+<title>Driver Parking Check-in / Check-out</title>
 <style>
-:root{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111827;background:#f3f6fb}*{box-sizing:border-box}body{margin:0}.top{height:52px;background:white;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 24px;font-weight:700}.wrap{max-width:520px;margin:0 auto;background:#fff;min-height:calc(100vh - 52px);padding:14px 24px 36px}.title{text-align:center;font-size:27px;font-weight:800;margin:0}.title span{color:#2563eb}.sub{text-align:center;color:#64748b;margin:6px 0 24px}.purpose{background:#f8fafc;border:1px solid #dbeafe;border-radius:18px;padding:16px;margin-bottom:22px}.purpose b{display:block;margin-bottom:8px}.purpose div{font-size:14px;color:#475569;margin:5px 0}.lot{display:flex;justify-content:space-between;align-items:center;border:1px solid #dbeafe;background:#eff6ff;border-radius:12px;padding:11px 13px;margin-bottom:18px}.lot small{color:#64748b}.lot strong{color:#1d4ed8}label{display:block;font-size:14px;font-weight:700;margin:14px 0 7px}label span{color:#dc2626}input{width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:14px;font-size:16px;outline:none}input:focus{border-color:#93c5fd}.btn{width:100%;border:0;border-radius:15px;background:#2563eb;color:white;font-size:18px;font-weight:800;padding:16px;margin-top:20px;cursor:pointer}.btn:disabled{opacity:.6}.msg{display:none;margin-top:16px;padding:16px;border-radius:14px;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46}.msg strong{display:block;font-size:18px;margin-bottom:8px}.details{font-size:14px;line-height:1.7}.note{text-align:center;color:#94a3b8;font-size:12px;margin-top:20px}.records{margin-top:28px;border-top:1px solid #e5e7eb;padding-top:20px}.records h3{font-size:15px;margin:0 0 10px}.records p{font-size:12px;color:#64748b;margin:0 0 10px}.records table{width:100%;border-collapse:collapse;font-size:12px}.records th,.records td{padding:8px 5px;border-bottom:1px solid #e5e7eb;text-align:left;vertical-align:top}.empty{color:#94a3b8;text-align:center;padding:12px}.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;padding:11px 12px;font-size:12px;margin-top:14px}
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111827;background:#f3f6fb}*{box-sizing:border-box}body{margin:0}.top{height:52px;background:white;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 24px;font-weight:700}.wrap{max-width:560px;margin:0 auto;background:#fff;min-height:calc(100vh - 52px);padding:14px 24px 36px}.title{text-align:center;font-size:27px;font-weight:800;margin:0}.title span{color:#2563eb}.sub{text-align:center;color:#64748b;margin:6px 0 20px}.purpose{background:#f8fafc;border:1px solid #dbeafe;border-radius:18px;padding:16px;margin-bottom:18px}.purpose b{display:block;margin-bottom:8px}.purpose div{font-size:14px;color:#475569;margin:5px 0}.lot{display:flex;justify-content:space-between;align-items:center;border:1px solid #dbeafe;background:#eff6ff;border-radius:12px;padding:11px 13px;margin-bottom:16px}.lot small{color:#64748b}.lot strong{color:#1d4ed8}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;background:#f1f5f9;padding:5px;border-radius:14px}.tab{border:0;background:transparent;padding:12px;border-radius:11px;font-weight:800;cursor:pointer;color:#64748b}.tab.active{background:white;color:#1d4ed8;box-shadow:0 2px 8px rgba(15,23,42,.08)}.panel{display:none}.panel.active{display:block}label{display:block;font-size:14px;font-weight:700;margin:14px 0 7px}label span{color:#dc2626}input,select{width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:14px;font-size:16px;outline:none;background:white}input:focus,select:focus{border-color:#93c5fd}.btn{width:100%;border:0;border-radius:15px;background:#2563eb;color:white;font-size:18px;font-weight:800;padding:16px;margin-top:20px;cursor:pointer}.btn.green{background:#059669}.btn:disabled{opacity:.6}.msg{display:none;margin-top:16px;padding:16px;border-radius:14px;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46}.msg.error{background:#fef2f2;border-color:#fecaca;color:#991b1b}.msg strong{display:block;font-size:18px;margin-bottom:8px}.details{font-size:14px;line-height:1.75}.summary{display:none;background:#f8fafc;border:1px solid #e2e8f0;border-radius:15px;padding:14px;margin-top:14px}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.summary small{color:#64748b}.summary strong{display:block;margin-top:3px}.fee-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:14px;margin-top:14px}.fee-box .amount{font-size:25px;font-weight:900;color:#1d4ed8;margin-top:4px}.note{text-align:center;color:#94a3b8;font-size:12px;margin-top:20px}.records{margin-top:28px;border-top:1px solid #e5e7eb;padding-top:20px}.records h3{font-size:15px;margin:0 0 10px}.records p{font-size:12px;color:#64748b;margin:0 0 10px}.records table{width:100%;border-collapse:collapse;font-size:11px}.records th,.records td{padding:8px 4px;border-bottom:1px solid #e5e7eb;text-align:left;vertical-align:top}.empty{color:#94a3b8;text-align:center;padding:12px}.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;padding:11px 12px;font-size:12px;margin-top:14px}.status{display:inline-block;padding:3px 7px;border-radius:999px;font-size:10px;font-weight:800}.in{background:#dbeafe;color:#1d4ed8}.out{background:#dcfce7;color:#166534}.paid{background:#dcfce7;color:#166534}.unpaid{background:#fee2e2;color:#991b1b}
 </style>
 </head>
 <body>
-<div class="top">司机签到 · 扫码登记</div>
+<div class="top">司机停车 · 扫码登记</div>
 <main class="wrap">
-  <h1 class="title">Driver <span>Check-in</span></h1>
-  <p class="sub">Scan, register and enter the parking lot</p>
-  <div class="purpose"><b>Parking QR Check-in</b><div>✓ Driver can enter without waiting for staff.</div><div>✓ Each check-in creates a timestamped parking record.</div></div>
+  <h1 class="title">Driver <span>Parking</span></h1>
+  <p class="sub">Check-in · Check-out · Parking Fee Record</p>
+
+  <div class="purpose"><b>Parking QR System</b><div>✓ Driver can enter and leave without staff standing by.</div><div>✓ Check-in, check-out, parking duration and payment can be recorded as proof.</div></div>
+
   <div class="lot"><div><small>Parking Location</small><br><strong id="lotName">PARK-A</strong></div><div>📍</div></div>
-  <form id="f">
-    <label>Driver Name <span>*</span></label><input id="driver" autocomplete="name" placeholder="Example: ANTON" required />
-    <label>Plate Number <span>*</span></label><input id="plate" autocomplete="off" placeholder="Example: B 9365 UFZ" required />
-    <label>Driver H.P. <span>*</span></label><input id="phone" inputmode="tel" autocomplete="tel" placeholder="Example: +62 859-2645-4233" required />
-    <button class="btn" type="submit">✓ Submit Check-in</button>
-  </form>
-  <div class="msg" id="msg"><strong>✓ Check-in Successful</strong><div class="details" id="details"></div></div>
-  <div class="warn">Current version stores records in this browser only. Connect Supabase to make records centralized and accessible to your office/admin.</div>
-  <section class="records"><h3>Recent records on this device</h3><p>Useful for immediate verification on the device used for check-in.</p><div id="records"></div></section>
-  <div class="note">Driver Parking Check-in System</div>
+
+  <div class="tabs">
+    <button class="tab active" data-panel="checkin">🚗 Check-in</button>
+    <button class="tab" data-panel="checkout">✅ Check-out / Pay</button>
+  </div>
+
+  <section class="panel active" id="checkin">
+    <form id="checkinForm">
+      <label>Driver Name <span>*</span></label><input id="driver" autocomplete="name" placeholder="Example: ANTON" required />
+      <label>Plate Number <span>*</span></label><input id="plate" autocomplete="off" placeholder="Example: B 9365 UFZ" required />
+      <label>Driver H.P. <span>*</span></label><input id="phone" inputmode="tel" autocomplete="tel" placeholder="Example: +62 859-2645-4233" required />
+      <button class="btn" type="submit">✓ Submit Check-in</button>
+    </form>
+    <div class="msg" id="checkinMsg"><strong>✓ Check-in Successful</strong><div class="details" id="checkinDetails"></div></div>
+  </section>
+
+  <section class="panel" id="checkout">
+    <form id="lookupForm">
+      <label>Plate Number <span>*</span></label><input id="checkoutPlate" autocomplete="off" placeholder="Example: B 9365 UFZ" required />
+      <button class="btn green" type="submit">Find Active Parking Record</button>
+    </form>
+
+    <div class="msg error" id="lookupError"><strong>Record Not Found</strong><div class="details" id="lookupErrorText"></div></div>
+
+    <div class="summary" id="checkoutSummary">
+      <div class="summary-grid">
+        <div><small>Driver</small><strong id="sumDriver">-</strong></div>
+        <div><small>Plate</small><strong id="sumPlate">-</strong></div>
+        <div><small>Check-in</small><strong id="sumIn">-</strong></div>
+        <div><small>Duration</small><strong id="sumDuration">-</strong></div>
+      </div>
+
+      <form id="checkoutForm">
+        <label>Parking Fee <span>*</span></label>
+        <input id="parkingFee" type="number" min="0" step="1" inputmode="numeric" placeholder="Enter parking fee amount" required />
+
+        <label>Currency <span>*</span></label>
+        <select id="currency" required>
+          <option value="IDR">IDR - Indonesian Rupiah</option>
+          <option value="TWD">TWD - New Taiwan Dollar</option>
+          <option value="USD">USD - US Dollar</option>
+        </select>
+
+        <label>Payment Method <span>*</span></label>
+        <select id="paymentMethod" required>
+          <option value="Cash">Cash</option>
+          <option value="QRIS">QRIS</option>
+          <option value="Bank Transfer">Bank Transfer</option>
+          <option value="E-Wallet">E-Wallet</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label>Payment Status <span>*</span></label>
+        <select id="paymentStatus" required>
+          <option value="Paid">Paid</option>
+          <option value="Unpaid">Unpaid</option>
+        </select>
+
+        <label>Payment Reference / Note</label>
+        <input id="paymentRef" placeholder="Optional receipt / transaction reference" />
+
+        <div class="fee-box"><small>Amount to record</small><div class="amount" id="feePreview">IDR 0</div></div>
+        <button class="btn green" type="submit">✓ Confirm Check-out & Payment</button>
+      </form>
+    </div>
+
+    <div class="msg" id="checkoutMsg"><strong>✓ Check-out Successful</strong><div class="details" id="checkoutDetails"></div></div>
+  </section>
+
+  <div class="warn">This version stores records in the browser used for the transaction. For drivers using different phones/devices and for a central office report, connect the page to Supabase or another central database.</div>
+
+  <section class="records"><h3>Recent parking records on this device</h3><p>Shows check-in, check-out and payment status recorded in this browser.</p><div id="records"></div></section>
+  <div class="note">Driver Parking Management System</div>
 </main>
+
 <script>
-const qs=new URLSearchParams(location.search);const lot=(qs.get('parking')||'PARK-A').toUpperCase();document.getElementById('lotName').textContent=lot;
-const key='driver_checkins_v1';
+const qs=new URLSearchParams(location.search);
+const lot=(qs.get('parking')||'PARK-A').toUpperCase();
+document.getElementById('lotName').textContent=lot;
+const key='driver_parking_records_v2';
+let selectedRecordId=null;
+
 function getRows(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return[]}}
-function render(){const rows=getRows().slice().reverse().slice(0,10),el=document.getElementById('records');if(!rows.length){el.innerHTML='<div class="empty">No check-ins yet.</div>';return}el.innerHTML='<table><thead><tr><th>Time</th><th>Driver</th><th>Plate</th><th>Lot</th></tr></thead><tbody>'+rows.map(r=>`<tr><td>${r.time}</td><td>${r.driver}</td><td>${r.plate}</td><td>${r.lot}</td></tr>`).join('')+'</tbody></table>'}
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();const driver=document.getElementById('driver').value.trim(),plate=document.getElementById('plate').value.trim().toUpperCase(),phone=document.getElementById('phone').value.trim();const now=new Date();const id='PK-'+now.toISOString().slice(0,10).replaceAll('-','')+'-'+String(Date.now()).slice(-6);const time=now.toLocaleString();const rows=getRows();rows.push({id,lot,driver,plate,phone,time,iso:now.toISOString()});localStorage.setItem(key,JSON.stringify(rows));document.getElementById('details').innerHTML=`Record: <b>${esc(id)}</b><br>Parking: <b>${esc(lot)}</b><br>Driver: <b>${esc(driver)}</b><br>Plate: <b>${esc(plate)}</b><br>Check-in: <b>${esc(time)}</b>`;document.getElementById('msg').style.display='block';render();e.target.reset();document.getElementById('msg').scrollIntoView({behavior:'smooth',block:'nearest'})});render();
+function saveRows(rows){localStorage.setItem(key,JSON.stringify(rows))}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function money(v,c){const n=Number(v||0);try{return new Intl.NumberFormat(undefined,{style:'currency',currency:c||'IDR',maximumFractionDigits:0}).format(n)}catch(e){return `${c||''} ${n.toLocaleString()}`}}
+function durationText(start,end){const ms=Math.max(0,new Date(end)-new Date(start));const mins=Math.floor(ms/60000);const h=Math.floor(mins/60),m=mins%60;return h?`${h} hr ${m} min`:`${m} min`}
+
+function render(){
+  const rows=getRows().slice().reverse().slice(0,15),el=document.getElementById('records');
+  if(!rows.length){el.innerHTML='<div class="empty">No parking records yet.</div>';return}
+  el.innerHTML='<table><thead><tr><th>Plate</th><th>In / Out</th><th>Status</th><th>Payment</th></tr></thead><tbody>'+rows.map(r=>{
+    const status=r.checkoutIso?'<span class="status out">OUT</span>':'<span class="status in">IN</span>';
+    const pay=r.checkoutIso?`<span class="status ${r.paymentStatus==='Paid'?'paid':'unpaid'}">${esc(r.paymentStatus||'Unpaid')}</span><br>${esc(r.currency||'')} ${Number(r.parkingFee||0).toLocaleString()}`:'-';
+    return `<tr><td><b>${esc(r.plate)}</b><br>${esc(r.driver)}</td><td>${esc(r.checkinTime)}${r.checkoutTime?'<br>→ '+esc(r.checkoutTime):''}</td><td>${status}</td><td>${pay}</td></tr>`
+  }).join('')+'</tbody></table>';
+}
+
+function switchPanel(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.panel===name));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===name));
+}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchPanel(t.dataset.panel)));
+
+// CHECK-IN
+document.getElementById('checkinForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const driver=document.getElementById('driver').value.trim();
+  const plate=document.getElementById('plate').value.trim().toUpperCase();
+  const phone=document.getElementById('phone').value.trim();
+  const rows=getRows();
+  const existing=rows.find(r=>r.plate===plate && r.lot===lot && !r.checkoutIso);
+  const msg=document.getElementById('checkinMsg');
+  if(existing){
+    msg.classList.add('error');
+    msg.querySelector('strong').textContent='Vehicle Already Checked In';
+    document.getElementById('checkinDetails').innerHTML=`Plate <b>${esc(plate)}</b> already has an active parking record since <b>${esc(existing.checkinTime)}</b>.`;
+    msg.style.display='block';return;
+  }
+  const now=new Date();
+  const id='PK-'+now.toISOString().slice(0,10).replaceAll('-','')+'-'+String(Date.now()).slice(-6);
+  const rec={id,lot,driver,plate,phone,checkinTime:now.toLocaleString(),checkinIso:now.toISOString(),checkoutTime:null,checkoutIso:null,parkingFee:null,currency:null,paymentMethod:null,paymentStatus:null,paymentRef:null};
+  rows.push(rec);saveRows(rows);
+  msg.classList.remove('error');msg.querySelector('strong').textContent='✓ Check-in Successful';
+  document.getElementById('checkinDetails').innerHTML=`Record: <b>${esc(id)}</b><br>Parking: <b>${esc(lot)}</b><br>Driver: <b>${esc(driver)}</b><br>Plate: <b>${esc(plate)}</b><br>Check-in: <b>${esc(rec.checkinTime)}</b>`;
+  msg.style.display='block';render();e.target.reset();msg.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+
+// FIND ACTIVE PARKING
+document.getElementById('lookupForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const plate=document.getElementById('checkoutPlate').value.trim().toUpperCase();
+  const rows=getRows();
+  const rec=[...rows].reverse().find(r=>r.plate===plate && r.lot===lot && !r.checkoutIso);
+  const err=document.getElementById('lookupError'),summary=document.getElementById('checkoutSummary');
+  document.getElementById('checkoutMsg').style.display='none';
+  if(!rec){
+    selectedRecordId=null;summary.style.display='none';err.style.display='block';
+    document.getElementById('lookupErrorText').innerHTML=`No active record for plate <b>${esc(plate)}</b> in <b>${esc(lot)}</b> on this device.`;
+    return;
+  }
+  err.style.display='none';selectedRecordId=rec.id;
+  const now=new Date();
+  document.getElementById('sumDriver').textContent=rec.driver;
+  document.getElementById('sumPlate').textContent=rec.plate;
+  document.getElementById('sumIn').textContent=rec.checkinTime;
+  document.getElementById('sumDuration').textContent=durationText(rec.checkinIso,now.toISOString());
+  summary.style.display='block';summary.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+
+function updateFeePreview(){document.getElementById('feePreview').textContent=money(document.getElementById('parkingFee').value,document.getElementById('currency').value)}
+document.getElementById('parkingFee').addEventListener('input',updateFeePreview);
+document.getElementById('currency').addEventListener('change',updateFeePreview);
+
+// CHECK-OUT + PAYMENT RECORD
+document.getElementById('checkoutForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!selectedRecordId)return;
+  const rows=getRows();const idx=rows.findIndex(r=>r.id===selectedRecordId);
+  if(idx<0)return;
+  const now=new Date();
+  const fee=Number(document.getElementById('parkingFee').value||0);
+  const currency=document.getElementById('currency').value;
+  const paymentMethod=document.getElementById('paymentMethod').value;
+  const paymentStatus=document.getElementById('paymentStatus').value;
+  const paymentRef=document.getElementById('paymentRef').value.trim();
+  rows[idx]={...rows[idx],checkoutTime:now.toLocaleString(),checkoutIso:now.toISOString(),parkingFee:fee,currency,paymentMethod,paymentStatus,paymentRef};
+  saveRows(rows);const rec=rows[idx];
+  document.getElementById('checkoutDetails').innerHTML=`Record: <b>${esc(rec.id)}</b><br>Parking: <b>${esc(rec.lot)}</b><br>Plate: <b>${esc(rec.plate)}</b><br>Check-in: <b>${esc(rec.checkinTime)}</b><br>Check-out: <b>${esc(rec.checkoutTime)}</b><br>Duration: <b>${esc(durationText(rec.checkinIso,rec.checkoutIso))}</b><br>Parking Fee: <b>${esc(money(rec.parkingFee,rec.currency))}</b><br>Payment: <b>${esc(rec.paymentStatus)}</b> via <b>${esc(rec.paymentMethod)}</b>${rec.paymentRef?'<br>Reference: <b>'+esc(rec.paymentRef)+'</b>':''}`;
+  document.getElementById('checkoutMsg').style.display='block';
+  document.getElementById('checkoutSummary').style.display='none';selectedRecordId=null;
+  document.getElementById('lookupForm').reset();e.target.reset();updateFeePreview();render();
+  document.getElementById('checkoutMsg').scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+
+render();updateFeePreview();
 </script>
 </body>
 </html>
