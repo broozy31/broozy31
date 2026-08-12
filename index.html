@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Driver Check-in</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111827;background:#f3f6fb}*{box-sizing:border-box}body{margin:0}.top{height:52px;background:white;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 24px;font-weight:700}.wrap{max-width:520px;margin:0 auto;background:#fff;min-height:calc(100vh - 52px);padding:14px 24px 36px}.title{text-align:center;font-size:27px;font-weight:800;margin:0}.title span{color:#2563eb}.sub{text-align:center;color:#64748b;margin:6px 0 24px}.purpose{background:#f8fafc;border:1px solid #dbeafe;border-radius:18px;padding:16px;margin-bottom:22px}.purpose b{display:block;margin-bottom:8px}.purpose div{font-size:14px;color:#475569;margin:5px 0}.lot{display:flex;justify-content:space-between;align-items:center;border:1px solid #dbeafe;background:#eff6ff;border-radius:12px;padding:11px 13px;margin-bottom:18px}.lot small{color:#64748b}.lot strong{color:#1d4ed8}label{display:block;font-size:14px;font-weight:700;margin:14px 0 7px}label span{color:#dc2626}input{width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:14px;font-size:16px;outline:none}input:focus{border-color:#93c5fd}.btn{width:100%;border:0;border-radius:15px;background:#2563eb;color:white;font-size:18px;font-weight:800;padding:16px;margin-top:20px;cursor:pointer}.btn:disabled{opacity:.6}.msg{display:none;margin-top:16px;padding:16px;border-radius:14px;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46}.msg strong{display:block;font-size:18px;margin-bottom:8px}.details{font-size:14px;line-height:1.7}.note{text-align:center;color:#94a3b8;font-size:12px;margin-top:20px}.records{margin-top:28px;border-top:1px solid #e5e7eb;padding-top:20px}.records h3{font-size:15px;margin:0 0 10px}.records p{font-size:12px;color:#64748b;margin:0 0 10px}.records table{width:100%;border-collapse:collapse;font-size:12px}.records th,.records td{padding:8px 5px;border-bottom:1px solid #e5e7eb;text-align:left;vertical-align:top}.empty{color:#94a3b8;text-align:center;padding:12px}.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;padding:11px 12px;font-size:12px;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="top">司机签到 · 扫码登记</div>
+<main class="wrap">
+  <h1 class="title">Driver <span>Check-in</span></h1>
+  <p class="sub">Scan, register and enter the parking lot</p>
+  <div class="purpose"><b>Parking QR Check-in</b><div>✓ Driver can enter without waiting for staff.</div><div>✓ Each check-in creates a timestamped parking record.</div></div>
+  <div class="lot"><div><small>Parking Location</small><br><strong id="lotName">PARK-A</strong></div><div>📍</div></div>
+  <form id="f">
+    <label>Driver Name <span>*</span></label><input id="driver" autocomplete="name" placeholder="Example: ANTON" required />
+    <label>Plate Number <span>*</span></label><input id="plate" autocomplete="off" placeholder="Example: B 9365 UFZ" required />
+    <label>Driver H.P. <span>*</span></label><input id="phone" inputmode="tel" autocomplete="tel" placeholder="Example: +62 859-2645-4233" required />
+    <button class="btn" type="submit">✓ Submit Check-in</button>
+  </form>
+  <div class="msg" id="msg"><strong>✓ Check-in Successful</strong><div class="details" id="details"></div></div>
+  <div class="warn">Current version stores records in this browser only. Connect Supabase to make records centralized and accessible to your office/admin.</div>
+  <section class="records"><h3>Recent records on this device</h3><p>Useful for immediate verification on the device used for check-in.</p><div id="records"></div></section>
+  <div class="note">Driver Parking Check-in System</div>
+</main>
+<script>
+const qs=new URLSearchParams(location.search);const lot=(qs.get('parking')||'PARK-A').toUpperCase();document.getElementById('lotName').textContent=lot;
+const key='driver_checkins_v1';
+function getRows(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return[]}}
+function render(){const rows=getRows().slice().reverse().slice(0,10),el=document.getElementById('records');if(!rows.length){el.innerHTML='<div class="empty">No check-ins yet.</div>';return}el.innerHTML='<table><thead><tr><th>Time</th><th>Driver</th><th>Plate</th><th>Lot</th></tr></thead><tbody>'+rows.map(r=>`<tr><td>${r.time}</td><td>${r.driver}</td><td>${r.plate}</td><td>${r.lot}</td></tr>`).join('')+'</tbody></table>'}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();const driver=document.getElementById('driver').value.trim(),plate=document.getElementById('plate').value.trim().toUpperCase(),phone=document.getElementById('phone').value.trim();const now=new Date();const id='PK-'+now.toISOString().slice(0,10).replaceAll('-','')+'-'+String(Date.now()).slice(-6);const time=now.toLocaleString();const rows=getRows();rows.push({id,lot,driver,plate,phone,time,iso:now.toISOString()});localStorage.setItem(key,JSON.stringify(rows));document.getElementById('details').innerHTML=`Record: <b>${esc(id)}</b><br>Parking: <b>${esc(lot)}</b><br>Driver: <b>${esc(driver)}</b><br>Plate: <b>${esc(plate)}</b><br>Check-in: <b>${esc(time)}</b>`;document.getElementById('msg').style.display='block';render();e.target.reset();document.getElementById('msg').scrollIntoView({behavior:'smooth',block:'nearest'})});render();
+</script>
+</body>
+</html>
