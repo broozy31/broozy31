@@ -4,166 +4,71 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="robots" content="noindex,nofollow" />
-<title>Parking Admin Dashboard</title>
+<title>SM+BSD Site Container Parking Record — Admin</title>
 <style>
-:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#0f172a;background:#f3f6fb;--blue:#2563eb;--green:#059669;--red:#dc2626;--amber:#d97706;--border:#e2e8f0;--muted:#64748b;--card:#fff}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(180deg,#f8fbff 0,#f3f6fb 38%,#eef2f7 100%)}button,input,select{font:inherit}.topbar{height:64px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:10px;font-weight:850}.brand-badge{width:36px;height:36px;border-radius:11px;background:#dbeafe;display:grid;place-items:center}.top-actions{display:flex;gap:8px}.link-btn,.ghost-btn,.primary-btn,.danger-btn{border:0;border-radius:11px;padding:10px 14px;font-weight:750;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.link-btn,.ghost-btn{background:#f1f5f9;color:#334155}.primary-btn{background:var(--blue);color:white}.danger-btn{background:#fee2e2;color:#991b1b}.shell{max-width:1500px;margin:0 auto;padding:28px 24px 50px}.hero{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:20px}.hero h1{font-size:30px;letter-spacing:-.03em;margin:0}.hero p{color:var(--muted);margin:7px 0 0}.connection{font-size:12px;color:#166534;background:#dcfce7;border:1px solid #bbf7d0;border-radius:999px;padding:7px 10px;font-weight:750}.filters{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:0 8px 28px rgba(15,23,42,.05);display:grid;grid-template-columns:minmax(210px,2fr) repeat(5,minmax(130px,1fr));gap:11px;align-items:end}.field label{display:block;font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.05em;color:#64748b;margin:0 0 6px}.field input,.field select{width:100%;min-height:43px;border:1px solid #cbd5e1;border-radius:11px;padding:10px 12px;background:#fff;color:#0f172a;outline:none}.field input:focus,.field select:focus{border-color:#60a5fa;box-shadow:0 0 0 3px #dbeafe}.filter-actions{grid-column:1/-1;display:flex;gap:9px;justify-content:flex-end;margin-top:2px}.cards{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:18px 0}.card{background:var(--card);border:1px solid var(--border);border-radius:17px;padding:17px;box-shadow:0 7px 22px rgba(15,23,42,.04);min-height:112px}.card .label{font-size:12px;color:#64748b;font-weight:800}.card .value{font-size:28px;font-weight:900;letter-spacing:-.03em;margin-top:8px}.card .sub{font-size:11px;color:#94a3b8;margin-top:5px}.card.inside .value{color:var(--blue)}.card.out .value{color:#334155}.card.paid .value{color:var(--green)}.card.unpaid .value{color:var(--red)}.card.money .value{font-size:17px;line-height:1.45;color:#1d4ed8}.panel{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 8px 28px rgba(15,23,42,.05);overflow:hidden}.panel-head{padding:15px 17px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-head h2{font-size:16px;margin:0}.panel-head p{font-size:12px;color:var(--muted);margin:4px 0 0}.table-wrap{overflow:auto;max-height:65vh}.table{width:100%;border-collapse:separate;border-spacing:0;min-width:1260px;font-size:12px}.table th{position:sticky;top:0;background:#f8fafc;border-bottom:1px solid var(--border);padding:11px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#64748b;z-index:3}.table td{padding:11px 10px;border-bottom:1px solid #edf2f7;vertical-align:top}.table tbody tr:hover{background:#f8fbff}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.strong{font-weight:850}.muted{color:#64748b}.badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:850;white-space:nowrap}.badge-in{background:#dbeafe;color:#1d4ed8}.badge-out{background:#e2e8f0;color:#334155}.badge-paid{background:#dcfce7;color:#166534}.badge-unpaid{background:#fee2e2;color:#991b1b}.empty{padding:45px;text-align:center;color:#94a3b8}.warning{display:none;margin:12px 0;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:13px;padding:11px 13px;font-size:12px}.login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{width:min(440px,100%);background:#fff;border:1px solid var(--border);border-radius:24px;padding:28px;box-shadow:0 22px 60px rgba(15,23,42,.12)}.login-icon{width:54px;height:54px;border-radius:16px;background:#dbeafe;display:grid;place-items:center;font-size:25px;margin-bottom:18px}.login-card h1{margin:0;font-size:26px}.login-card p{color:var(--muted);font-size:14px;line-height:1.55}.login-card label{display:block;font-weight:800;font-size:13px;margin:17px 0 7px}.login-card input{width:100%;border:2px solid var(--border);border-radius:13px;padding:14px 15px;font-size:16px;outline:none}.login-card input:focus{border-color:#93c5fd}.login-card .primary-btn{width:100%;padding:14px;margin-top:14px}.login-msg{min-height:20px;margin-top:10px;font-size:12px;color:#b91c1c}.security-note{margin-top:16px;padding:11px 12px;background:#f8fafc;border-radius:12px;color:#64748b;font-size:11px;line-height:1.5}.dashboard{display:none}.loading{opacity:.62;pointer-events:none}.footer{text-align:center;color:#94a3b8;font-size:11px;margin-top:18px}@media(max-width:1200px){.filters{grid-template-columns:repeat(3,minmax(0,1fr))}.field.search{grid-column:span 2}.cards{grid-template-columns:repeat(3,1fr)}}@media(max-width:720px){.topbar{padding:0 14px}.brand span:last-child{display:none}.shell{padding:20px 12px 40px}.hero{align-items:flex-start;flex-direction:column}.hero h1{font-size:25px}.filters{grid-template-columns:1fr 1fr}.field.search{grid-column:1/-1}.filter-actions{justify-content:stretch}.filter-actions button{flex:1}.cards{grid-template-columns:1fr 1fr}.top-actions .link-btn{display:none}.card{min-height:100px;padding:14px}.card .value{font-size:24px}}@media(max-width:430px){.filters{grid-template-columns:1fr}.field.search{grid-column:auto}.cards{grid-template-columns:1fr 1fr}}
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#0f172a;background:#f3f6fb;--blue:#2563eb;--green:#059669;--red:#dc2626;--border:#e2e8f0;--muted:#64748b;--card:#fff}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#f3f6fb}button,input,select{font:inherit}.login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{width:min(460px,100%);background:#fff;border:1px solid var(--border);border-radius:24px;padding:28px;box-shadow:0 22px 60px rgba(15,23,42,.12)}.login-icon{width:54px;height:54px;border-radius:16px;background:#dbeafe;display:grid;place-items:center;font-size:25px;margin-bottom:18px}.login-card h1{margin:0;font-size:24px;line-height:1.2}.login-card p{color:var(--muted);font-size:14px;line-height:1.55}.login-card label{display:block;font-weight:800;font-size:13px;margin:17px 0 7px}.login-card input{width:100%;border:2px solid var(--border);border-radius:13px;padding:14px 15px;font-size:16px;outline:none}.login-card input:focus{border-color:#93c5fd}.primary,.ghost,.danger{border:0;border-radius:11px;padding:11px 14px;font-weight:800;cursor:pointer}.primary{background:var(--blue);color:#fff}.ghost{background:#f1f5f9;color:#334155}.danger{background:#fee2e2;color:#991b1b}.login-card .primary{width:100%;margin-top:14px;padding:14px}.login-msg{min-height:20px;margin-top:10px;font-size:12px;color:#b91c1c}.dashboard{display:none}.topbar{min-height:64px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:12px;position:sticky;top:0;z-index:20}.brand{font-weight:900;line-height:1.2}.brand small{display:block;color:var(--muted);font-weight:700;margin-top:3px}.actions{display:flex;gap:8px}.shell{max-width:1500px;margin:0 auto;padding:26px 24px 50px}.hero{display:flex;justify-content:space-between;gap:18px;align-items:flex-end}.hero h2{font-size:30px;margin:0}.hero p{color:var(--muted);margin:7px 0 0}.connection{font-size:12px;color:#166534;background:#dcfce7;border:1px solid #bbf7d0;border-radius:999px;padding:7px 10px;font-weight:800}.tariff{margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:14px;padding:12px 14px;font-size:13px}.filters{margin-top:16px;background:#fff;border:1px solid var(--border);border-radius:18px;padding:16px;display:grid;grid-template-columns:minmax(210px,2fr) repeat(5,minmax(130px,1fr));gap:11px}.field label{display:block;font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.05em;color:#64748b;margin-bottom:6px}.field input,.field select{width:100%;min-height:43px;border:1px solid #cbd5e1;border-radius:11px;padding:10px 12px;background:#fff}.filter-actions{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end}.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:18px 0}.card{background:#fff;border:1px solid var(--border);border-radius:17px;padding:17px;min-height:108px}.card .label{font-size:12px;color:#64748b;font-weight:800}.card .value{font-size:27px;font-weight:900;margin-top:8px}.money .value{font-size:16px;line-height:1.5;color:#1d4ed8}.panel{background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden}.panel-head{padding:15px 17px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-head h3{margin:0}.panel-head p{margin:4px 0 0;color:var(--muted);font-size:12px}.table-wrap{overflow:auto;max-height:65vh}.table{width:100%;border-collapse:separate;border-spacing:0;min-width:1260px;font-size:12px}.table th{position:sticky;top:0;background:#f8fafc;border-bottom:1px solid var(--border);padding:11px 10px;text-align:left;font-size:10px;text-transform:uppercase;color:#64748b}.table td{padding:11px 10px;border-bottom:1px solid #edf2f7;vertical-align:top}.badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:850}.in{background:#dbeafe;color:#1d4ed8}.out{background:#e2e8f0;color:#334155}.paid{background:#dcfce7;color:#166534}.unpaid{background:#fee2e2;color:#991b1b}.empty{text-align:center;color:#94a3b8;padding:45px}.footer{text-align:center;color:#94a3b8;font-size:11px;margin-top:18px}.warn{display:none;margin:12px 0;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:13px;padding:11px 13px;font-size:12px}@media(max-width:1100px){.filters{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:repeat(3,1fr)}}@media(max-width:720px){.topbar{padding:10px 14px}.shell{padding:18px 12px 40px}.hero{flex-direction:column;align-items:flex-start}.filters{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr 1fr}.filter-actions{justify-content:stretch}.filter-actions button{flex:1}.actions .ghost{display:none}}
 </style>
 </head>
 <body>
 <section class="login-screen" id="loginScreen">
   <div class="login-card">
     <div class="login-icon">🔐</div>
-    <h1>Parking Admin</h1>
-    <p>Enter the private admin access key to open centralized parking records and payment reports.</p>
+    <h1>SM+BSD Site Container Parking Record</h1>
+    <p>Admin Dashboard · Centralized parking and payment records</p>
     <form id="loginForm">
       <label for="adminKey">Admin Access Key</label>
       <input id="adminKey" type="password" autocomplete="current-password" placeholder="PKADM-…" required />
-      <button class="primary-btn" id="loginBtn" type="submit">Unlock Dashboard</button>
+      <button class="primary" id="loginBtn" type="submit">Unlock Dashboard</button>
       <div class="login-msg" id="loginMsg"></div>
     </form>
-    <div class="security-note">The access key is not embedded in this webpage. When you unlock the dashboard it is kept only in this browser tab/session and sent over HTTPS to the protected Supabase admin API.</div>
   </div>
 </section>
 
 <div class="dashboard" id="dashboard">
-  <header class="topbar">
-    <div class="brand"><div class="brand-badge">🅿️</div><span>Parking Admin</span></div>
-    <div class="top-actions"><a class="link-btn" href="./?parking=PARK-A">Driver Page</a><button class="danger-btn" id="logoutBtn">Lock Dashboard</button></div>
-  </header>
-
-  <main class="shell" id="shell">
-    <section class="hero">
-      <div><h1>Central Parking Dashboard</h1><p>Check-in, check-out and parking payment records from all driver devices.</p></div>
-      <div class="connection">● Connected to Supabase</div>
-    </section>
-
-    <section class="filters">
-      <div class="field search"><label for="search">Search</label><input id="search" placeholder="Plate, driver, phone, record no. or payment ref" /></div>
-      <div class="field"><label for="lot">Parking Lot</label><select id="lot"><option value="">All lots</option></select></div>
-      <div class="field"><label for="status">Parking Status</label><select id="status"><option value="">All</option><option value="checked_in">Currently Inside</option><option value="checked_out">Checked Out</option></select></div>
-      <div class="field"><label for="payment">Payment</label><select id="payment"><option value="">All</option><option value="paid">Paid</option><option value="unpaid">Unpaid</option></select></div>
-      <div class="field"><label for="dateFrom">Check-in From</label><input id="dateFrom" type="date" /></div>
-      <div class="field"><label for="dateTo">Check-in Through</label><input id="dateTo" type="date" /></div>
-      <div class="filter-actions"><button class="ghost-btn" id="clearBtn" type="button">Clear Filters</button><button class="primary-btn" id="refreshBtn" type="button">↻ Refresh</button></div>
-    </section>
-
-    <section class="cards">
-      <div class="card"><div class="label" id="recordsLabel">Today's Entries</div><div class="value" id="statTotal">0</div><div class="sub">Matching current filters</div></div>
-      <div class="card inside"><div class="label">Currently Inside</div><div class="value" id="statInside">0</div><div class="sub">Active parking records</div></div>
-      <div class="card out"><div class="label">Checked Out</div><div class="value" id="statOut">0</div><div class="sub">Completed parking records</div></div>
-      <div class="card paid"><div class="label">Paid</div><div class="value" id="statPaid">0</div><div class="sub">Paid check-outs</div></div>
-      <div class="card unpaid"><div class="label">Unpaid</div><div class="value" id="statUnpaid">0</div><div class="sub">Outstanding check-outs</div></div>
-      <div class="card money"><div class="label">Parking Fees</div><div class="value" id="statFees">—</div><div class="sub">Total / paid / unpaid by currency</div></div>
-    </section>
-
-    <div class="warning" id="warning"></div>
-
-    <section class="panel">
-      <div class="panel-head">
-        <div><h2>Parking Records</h2><p id="recordCount">0 records</p></div>
-        <button class="ghost-btn" id="exportBtn" type="button">⇩ Export CSV / Excel</button>
-      </div>
-      <div class="table-wrap">
-        <table class="table">
-          <thead><tr><th>Record No.</th><th>Driver</th><th>Phone</th><th>Plate</th><th>Lot</th><th>Check-in</th><th>Check-out</th><th>Duration</th><th>Parking</th><th>Fee</th><th>Payment</th><th>Reference</th></tr></thead>
-          <tbody id="tbody"></tbody>
-        </table>
-        <div class="empty" id="empty">No matching parking records.</div>
-      </div>
-    </section>
-    <div class="footer">Centralized Driver Parking Management · Supabase</div>
-  </main>
+<header class="topbar"><div class="brand">SM+BSD Site Container Parking Record<small>Admin Dashboard</small></div><div class="actions"><button class="ghost" onclick="location.href='./?parking=PARK-A'">Driver Page</button><button class="danger" id="logoutBtn">Lock</button></div></header>
+<main class="shell">
+<section class="hero"><div><h2>Parking Dashboard</h2><p>Check-in, check-out, duration, automatic fee and payment records.</p></div><div class="connection">● Supabase Central DB</div></section>
+<div class="tariff"><b>Tariff:</b> first 24 hours / 1 day = <b>Rp50.000</b>. After 24 hours = <b>+Rp5.000 per started additional hour</b>.</div>
+<section class="filters">
+<div class="field"><label>Search</label><input id="search" placeholder="Plate, driver, phone, record, payment ref" /></div>
+<div class="field"><label>Parking Lot</label><select id="lot"><option value="">All lots</option></select></div>
+<div class="field"><label>Parking Status</label><select id="status"><option value="">All</option><option value="checked_in">Currently Inside</option><option value="checked_out">Checked Out</option></select></div>
+<div class="field"><label>Payment</label><select id="payment"><option value="">All</option><option value="paid">Paid</option><option value="unpaid">Unpaid</option></select></div>
+<div class="field"><label>Check-in From</label><input id="dateFrom" type="date" /></div>
+<div class="field"><label>Check-in Through</label><input id="dateTo" type="date" /></div>
+<div class="filter-actions"><button class="ghost" id="clearBtn">Clear</button><button class="primary" id="refreshBtn">↻ Refresh</button></div>
+</section>
+<section class="cards">
+<div class="card"><div class="label">Records</div><div class="value" id="statTotal">0</div></div>
+<div class="card"><div class="label">Currently Inside</div><div class="value" id="statInside">0</div></div>
+<div class="card"><div class="label">Checked Out</div><div class="value" id="statOut">0</div></div>
+<div class="card"><div class="label">Paid</div><div class="value" id="statPaid">0</div></div>
+<div class="card"><div class="label">Unpaid</div><div class="value" id="statUnpaid">0</div></div>
+<div class="card money"><div class="label">Parking Fees</div><div class="value" id="statFees">—</div></div>
+</section>
+<div class="warn" id="warning"></div>
+<section class="panel"><div class="panel-head"><div><h3>SM+BSD Parking Records</h3><p id="recordCount">0 records</p></div><button class="ghost" id="exportBtn">⇩ Export CSV / Excel</button></div><div class="table-wrap"><table class="table"><thead><tr><th>Record No.</th><th>Driver</th><th>Phone</th><th>Plate</th><th>Lot</th><th>Check-in</th><th>Check-out</th><th>Duration</th><th>Status</th><th>Fee</th><th>Payment</th><th>Reference</th></tr></thead><tbody id="tbody"></tbody></table><div class="empty" id="empty">No matching parking records.</div></div></section>
+<div class="footer">SM+BSD Site Container Parking Record · Centralized with Supabase</div>
+</main>
 </div>
-
 <script>
 const API='https://onbcyzkybghktwulmvyq.supabase.co/functions/v1/parking-admin-api';
-const SESSION_KEY='parking_admin_access_key_v1';
-let adminKey='';
-let currentRows=[];
-let knownLots=new Set();
-
-const $=id=>document.getElementById(id);
+const SESSION_KEY='sm_bsd_parking_admin_key_v1';let adminKey='';let rows=[];const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-const pad=n=>String(n).padStart(2,'0');
-function localDateString(d=new Date()){return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`}
-function startIso(dateStr){if(!dateStr)return '';const d=new Date(`${dateStr}T00:00:00`);return Number.isNaN(d.getTime())?'':d.toISOString()}
-function nextDayIso(dateStr){if(!dateStr)return '';const d=new Date(`${dateStr}T00:00:00`);if(Number.isNaN(d.getTime()))return '';d.setDate(d.getDate()+1);return d.toISOString()}
-function fmtDate(v){if(!v)return '—';const d=new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleString()}
-function fmtDuration(r){let mins=Number(r.parking_minutes);if(!Number.isFinite(mins)||mins<0){const end=r.check_out_at?new Date(r.check_out_at):new Date();mins=Math.max(0,Math.floor((end-new Date(r.check_in_at))/60000))}const h=Math.floor(mins/60),m=Math.floor(mins%60);return h?`${h}h ${m}m`:`${m}m`}
-function fmtMoney(value,currency){const n=Number(value||0);if(!currency)return n.toLocaleString();try{return new Intl.NumberFormat(undefined,{style:'currency',currency:String(currency).toUpperCase(),maximumFractionDigits:2}).format(n)}catch{return `${currency} ${n.toLocaleString()}`}}
-
-async function api(action, extra={}){
-  const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':adminKey},body:JSON.stringify({action,...extra}),cache:'no-store'});
-  let data={};try{data=await res.json()}catch{}
-  if(res.status===401){sessionStorage.removeItem(SESSION_KEY);adminKey='';showLogin(data.error||'Admin session is no longer valid.');throw new Error(data.error||'Unauthorized')}
-  if(!res.ok)throw new Error(data.error||`Request failed (${res.status})`);
-  return data;
-}
-
-function showLogin(message=''){$('dashboard').style.display='none';$('loginScreen').style.display='grid';$('loginMsg').textContent=message;$('adminKey').value='';setTimeout(()=>$('adminKey').focus(),50)}
+const pad=n=>String(n).padStart(2,'0');const localDate=()=>{const d=new Date();return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`};
+const isoStart=s=>s?new Date(`${s}T00:00:00`).toISOString():'';const isoNext=s=>{if(!s)return'';const d=new Date(`${s}T00:00:00`);d.setDate(d.getDate()+1);return d.toISOString()};
+const fmtDate=v=>v?new Date(v).toLocaleString():'—';const fmtDuration=r=>{let m=Number(r.parking_minutes);if(!Number.isFinite(m)||m<0){const end=r.check_out_at?new Date(r.check_out_at):new Date();m=Math.max(0,Math.floor((end-new Date(r.check_in_at))/60000))}const d=Math.floor(m/1440),h=Math.floor((m%1440)/60),x=Math.floor(m%60);return d?`${d}d ${h}h ${x}m`:h?`${h}h ${x}m`:`${x}m`};
+const fmtMoney=(n,c='IDR')=>{try{return new Intl.NumberFormat('id-ID',{style:'currency',currency:c,maximumFractionDigits:0}).format(Number(n||0))}catch{return `${c} ${Number(n||0).toLocaleString()}`}};
+async function api(action,extra={}){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':adminKey},body:JSON.stringify({action,...extra}),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw new Error(d.error||`Request failed (${r.status})`);return d}
+function showLogin(msg=''){sessionStorage.removeItem(SESSION_KEY);$('dashboard').style.display='none';$('loginScreen').style.display='grid';$('loginMsg').textContent=msg}
 function showDashboard(){$('loginScreen').style.display='none';$('dashboard').style.display='block'}
-function setBusy(busy){$('shell').classList.toggle('loading',busy);$('refreshBtn').disabled=busy;$('exportBtn').disabled=busy}
-
-async function unlock(key){
-  adminKey=key.trim();$('loginMsg').textContent='Checking access…';$('loginBtn').disabled=true;
-  try{await api('auth_check');sessionStorage.setItem(SESSION_KEY,adminKey);$('adminKey').value='';showDashboard();setDefaultToday();await loadDashboard()}
-  catch(e){if(adminKey){$('loginMsg').textContent=e.message||'Unable to unlock dashboard.'}}
-  finally{$('loginBtn').disabled=false}
-}
-
-$('loginForm').addEventListener('submit',e=>{e.preventDefault();unlock($('adminKey').value)});
-$('logoutBtn').addEventListener('click',()=>{sessionStorage.removeItem(SESSION_KEY);adminKey='';showLogin('Dashboard locked.')});
-
-function setDefaultToday(){if(!$('dateFrom').value&&!$('dateTo').value){const t=localDateString();$('dateFrom').value=t;$('dateTo').value=t}}
-function filters(){return {search:$('search').value.trim(),lot:$('lot').value,status:$('status').value,payment_status:$('payment').value,date_from_iso:startIso($('dateFrom').value),date_to_iso:nextDayIso($('dateTo').value)}}
-
-function updateLots(lots){
-  (lots||[]).forEach(x=>x&&knownLots.add(x));currentRows.forEach(r=>r.parking_lot&&knownLots.add(r.parking_lot));
-  const selected=$('lot').value;$('lot').innerHTML='<option value="">All lots</option>'+[...knownLots].sort().map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');
-  if([...knownLots].includes(selected))$('lot').value=selected;
-}
-
-function feeHtml(by){
-  const entries=Object.entries(by||{});if(!entries.length)return '—';
-  return entries.map(([c,v])=>`<div><b>${esc(c)}</b> ${Number(v.total||0).toLocaleString()} <span class="muted">(paid ${Number(v.paid||0).toLocaleString()} · due ${Number(v.unpaid||0).toLocaleString()})</span></div>`).join('');
-}
-
-function renderStats(s){
-  $('statTotal').textContent=Number(s?.total||0).toLocaleString();$('statInside').textContent=Number(s?.checked_in||0).toLocaleString();$('statOut').textContent=Number(s?.checked_out||0).toLocaleString();$('statPaid').textContent=Number(s?.paid||0).toLocaleString();$('statUnpaid').textContent=Number(s?.unpaid||0).toLocaleString();$('statFees').innerHTML=feeHtml(s?.by_currency);
-  const today=localDateString();$('recordsLabel').textContent=($('dateFrom').value===today&&$('dateTo').value===today)?"Today's Entries":"Filtered Records";
-}
-
-function renderRows(rows){
-  currentRows=rows||[];$('recordCount').textContent=`${currentRows.length.toLocaleString()} record${currentRows.length===1?'':'s'} shown`;
-  $('empty').style.display=currentRows.length?'none':'block';
-  $('tbody').innerHTML=currentRows.map(r=>{
-    const parking=r.status==='checked_in'?'<span class="badge badge-in">INSIDE</span>':'<span class="badge badge-out">CHECKED OUT</span>';
-    const payment=r.status==='checked_out'?(r.payment_status==='paid'?'<span class="badge badge-paid">PAID</span>':'<span class="badge badge-unpaid">UNPAID</span>'):'—';
-    return `<tr><td class="mono">${esc(r.record_no)}</td><td><span class="strong">${esc(r.driver_name)}</span></td><td>${esc(r.driver_phone)}</td><td class="strong">${esc(r.plate_number)}</td><td>${esc(r.parking_lot)}</td><td>${esc(fmtDate(r.check_in_at))}</td><td>${esc(fmtDate(r.check_out_at))}</td><td>${esc(fmtDuration(r))}</td><td>${parking}</td><td>${r.status==='checked_out'?esc(fmtMoney(r.parking_fee,r.currency)):'—'}</td><td>${payment}<div class="muted" style="margin-top:4px">${esc(r.payment_method||'')}</div></td><td>${esc(r.payment_reference||'—')}</td></tr>`
-  }).join('');
-}
-
-async function loadDashboard(){
-  setBusy(true);$('warning').style.display='none';
-  try{const data=await api('dashboard',{filters:filters()});renderStats(data.stats);renderRows(data.rows);updateLots(data.lots);if(data.truncated){$('warning').textContent='The result set is very large. The dashboard shows the first 5,000 matching rows. Narrow the filters before exporting for a complete file.';$('warning').style.display='block'}}
-  catch(e){$('warning').textContent=e.message||'Unable to load records.';$('warning').style.display='block'}finally{setBusy(false)}
-}
-
-$('refreshBtn').addEventListener('click',loadDashboard);
-$('clearBtn').addEventListener('click',()=>{$('search').value='';$('lot').value='';$('status').value='';$('payment').value='';$('dateFrom').value='';$('dateTo').value='';loadDashboard()});
-['lot','status','payment','dateFrom','dateTo'].forEach(id=>$(id).addEventListener('change',loadDashboard));
-let searchTimer;$('search').addEventListener('input',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(loadDashboard,450)});
-
-function csvCell(v){const s=String(v??'');return '"'+s.replaceAll('"','""')+'"'}
-$('exportBtn').addEventListener('click',()=>{
-  if(!currentRows.length)return;
-  const headers=['Record No','Driver Name','Phone','Plate Number','Parking Lot','Check-in','Check-out','Duration Minutes','Status','Parking Fee','Currency','Payment Method','Payment Status','Payment Reference'];
-  const lines=[headers.map(csvCell).join(',')];
-  for(const r of currentRows){lines.push([r.record_no,r.driver_name,r.driver_phone,r.plate_number,r.parking_lot,r.check_in_at||'',r.check_out_at||'',r.parking_minutes??'',r.status,r.parking_fee??'',r.currency||'',r.payment_method||'',r.payment_status||'',r.payment_reference||''].map(csvCell).join(','))}
-  const blob=new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`parking-records-${localDateString()}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)
-});
-
-(async function boot(){const saved=sessionStorage.getItem(SESSION_KEY);if(saved){try{adminKey=saved;await api('auth_check');showDashboard();setDefaultToday();await loadDashboard();return}catch(e){}}showLogin()})();
+async function unlock(key){adminKey=String(key||'').trim();$('loginBtn').disabled=true;$('loginMsg').textContent='Checking...';try{await api('auth_check');sessionStorage.setItem(SESSION_KEY,adminKey);$('adminKey').value='';$('loginMsg').textContent='';showDashboard();if(!$('dateFrom').value&&!$('dateTo').value){const t=localDate();$('dateFrom').value=t;$('dateTo').value=t}await load()}catch(e){$('loginMsg').textContent=e.message||'Unable to unlock dashboard.'}finally{$('loginBtn').disabled=false}}
+$('loginForm').onsubmit=e=>{e.preventDefault();unlock($('adminKey').value)};$('logoutBtn').onclick=()=>{adminKey='';showLogin('Dashboard locked.')};
+function filters(){return{search:$('search').value.trim(),lot:$('lot').value,status:$('status').value,payment_status:$('payment').value,date_from_iso:isoStart($('dateFrom').value),date_to_iso:isoNext($('dateTo').value)}}
+async function load(){try{const d=await api('dashboard',{filters:filters()});rows=d.rows||[];$('statTotal').textContent=d.stats.total||0;$('statInside').textContent=d.stats.checked_in||0;$('statOut').textContent=d.stats.checked_out||0;$('statPaid').textContent=d.stats.paid||0;$('statUnpaid').textContent=d.stats.unpaid||0;const money=d.stats.by_currency||{};$('statFees').innerHTML=Object.keys(money).length?Object.entries(money).map(([c,v])=>`${esc(c)} ${Number(v.total||0).toLocaleString('id-ID')}`).join('<br>'):'—';const current=$('lot').value;const lots=d.lots||[];$('lot').innerHTML='<option value="">All lots</option>'+lots.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');if(lots.includes(current))$('lot').value=current;$('recordCount').textContent=`${rows.length} record${rows.length===1?'':'s'}`;$('empty').style.display=rows.length?'none':'block';$('tbody').innerHTML=rows.map(r=>`<tr><td><b>${esc(r.record_no)}</b></td><td>${esc(r.driver_name)}</td><td>${esc(r.driver_phone)}</td><td><b>${esc(r.plate_number)}</b></td><td>${esc(r.parking_lot)}</td><td>${esc(fmtDate(r.check_in_at))}</td><td>${esc(fmtDate(r.check_out_at))}</td><td>${esc(fmtDuration(r))}</td><td><span class="badge ${r.status==='checked_in'?'in':'out'}">${r.status==='checked_in'?'INSIDE':'CHECKED OUT'}</span></td><td>${r.status==='checked_out'?esc(fmtMoney(r.parking_fee,r.currency||'IDR')):'—'}</td><td><span class="badge ${r.payment_status==='paid'?'paid':'unpaid'}">${esc(String(r.payment_status||'unpaid').toUpperCase())}</span><br>${esc(r.payment_method||'')}</td><td>${esc(r.payment_reference||'—')}</td></tr>`).join('');$('warning').style.display=d.truncated?'block':'none';$('warning').textContent=d.truncated?'Result set was truncated. Narrow the filters for a complete export.':''}catch(e){if(/invalid admin|too many failed|unauthorized/i.test(e.message)){adminKey='';showLogin(e.message)}else{$('warning').style.display='block';$('warning').textContent=e.message}}}
+$('refreshBtn').onclick=load;$('clearBtn').onclick=()=>{$('search').value='';$('lot').value='';$('status').value='';$('payment').value='';$('dateFrom').value='';$('dateTo').value='';load()};['lot','status','payment'].forEach(id=>$(id).onchange=load);
+$('exportBtn').onclick=()=>{if(!rows.length)return;const cols=[['Record No','record_no'],['Driver','driver_name'],['Phone','driver_phone'],['Plate','plate_number'],['Lot','parking_lot'],['Check-in','check_in_at'],['Check-out','check_out_at'],['Minutes','parking_minutes'],['Fee','parking_fee'],['Currency','currency'],['Payment Method','payment_method'],['Payment Status','payment_status'],['Payment Reference','payment_reference'],['Status','status']];const q=v=>`"${String(v??'').replaceAll('"','""')}"`;const csv='\ufeff'+cols.map(c=>q(c[0])).join(',')+'\n'+rows.map(r=>cols.map(c=>q(r[c[1]])).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download=`SM-BSD-Parking-${localDate()}.csv`;a.click();URL.revokeObjectURL(a.href)};
+const saved=sessionStorage.getItem(SESSION_KEY);if(saved){unlock(saved)}
 </script>
 </body>
 </html>
